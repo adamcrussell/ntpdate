@@ -1,0 +1,44 @@
+#!/bin/bash
+#
+#  ntpdate 0.1.0
+#
+#  (c) 2004-2005 by Robert Scheck <ntpdate@robert-scheck.de>
+#
+#  This program is free software; you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published by
+#  the Free Software Foundation; either version 2 of the License, or
+#  (at your option) any later version.
+#
+#  This program is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#  GNU General Public License for more details.
+#
+#  You should have received a copy of the GNU General Public License
+#  along with this program; if not, write to the Free Software
+#  Foundation, Inc.,
+#  59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+#
+
+. /etc/sysconfig/i18n
+
+if [ -x /usr/sbin/ntpdate ]; then
+  # Try ntpdate for one of the known subzone time servers
+  for i in at au be br ca ca ch cl de dk es fi fr gt ie il it jp mx my nl no nz ph pl pt ru se sg si tr uk us; do
+    if [ $(echo $LANG | grep -E -i -c $i) -eq 1 -a "$ALREADY_UPDATED" != "yes" ]; then
+      # In Germany, use a german Stratum 1 time server
+      if [ "$i" = "de" ]; then
+        /usr/sbin/ntpdate -b -c -s ntp$[ ($RANDOM % 2) + 1 ].ptb.de
+      # For the rest, use the time server pool from ntp.org
+      else
+        /usr/sbin/ntpdate -b -c -s ${i}.pool.ntp.org
+      fi
+      ALREADY_UPDATED="yes"
+    fi
+  done
+
+  # Otherwise use the default time server
+  if [ "$ALREADY_UPDATED" != "yes" ]; then
+    /usr/sbin/ntpdate -b -c -s pool.ntp.org
+  fi
+fi

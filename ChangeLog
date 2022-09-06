@@ -1,0 +1,15 @@
+* Sun Oct 02 2005 Robert Scheck <ntpdate@robert-scheck.de> 0.1.0
+- Bump version number and make the first official available and
+  downloadable release
+
+* Sat Oct 01 2005 Robert Scheck <ntpdate@robert-scheck.de> 0.0.4
+- Started writing the README file
+
+* Fri Sep 30 2005 Robert Scheck <ntpdate@robert-scheck.de> 0.0.3
+- Fixed a ugly typo in the German man page
+
+* Mon Sep 26 2005 Robert Scheck <ntpdate@robert-scheck.de> 0.0.2
+- Added localized man pages, a Makefile and a cron job
+
+* Sun Sep 25 2005 Robert Scheck <ntpdate@robert-scheck.de> 0.0.1
+- Initial try to develop a small ntpdate replacement in perl

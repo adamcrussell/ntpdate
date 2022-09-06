@@ -1,0 +1,106 @@
+
+                          _             _       _
+                    _ __ | |_ _ __   __| | __ _| |_ ___
+                   | '_ \| __| '_ \ / _` |/ _` | __/ _ \
+                   | | | | |_| |_) | (_| | (_| | ||  __/
+                   |_| |_|\__| .__/ \__,_|\__,_|\__\___|
+                             |_|
+
+
+
+
+
+Content
+-------
+
+1.0 What is ntpdate?
+2.0 Requirements
+3.0 Installation and configuration
+4.0 License and copyright
+5.0 Some NTP information
+6.0 Bugs and reporting
+7.0 Thanksgiving
+8.0 Contact
+
+
+1.0 What is ntpdate?
+--------------------
+
+ntpdate is a simple and small replacement written in Perl for the homonymous
+and obsoleted tool from the ISC NTP package. ntpdate sets the local date and
+time by polling the Network Time Protocol (NTP) server(s) given as the server
+argument to determine the correct time. It must be run as root on the local
+host.
+
+For real time synchronization, please use a more professional software, for
+example the already mentioned ISC NTP from http://ntp.isc.org/.
+
+
+2.0 Requirements
+----------------
+
+- perl >= 5.6.0; with the following perl modules installed:
+  - IO::Socket
+  - Time::HiRes
+  - POSIX
+  - Getopt::Long
+  - Sys::Syslog
+- man >= 1.0p
+  - man >= 1.5p is recommented to avoid possible problems
+- vixie-cron >= 3.0.1
+  - vixie-cron >= 4.1 without PAM support is recommented
+
+
+3.0 Installation and configuration
+----------------------------------
+
+Extract the ntpdate-X.Y.Z.tar.gz using "tar xvfz <file>" or "gzip -d <file> &&
+tar xvf <file>" for example. The "X.Y.Z" simply stands for the current version
+number of ntpdate.
+
+After that, change into the directory and type "make install" for installing.
+
+
+4.0 License and copyright
+-------------------------
+
+The original script, where ntpdate is based on, was licensed under the same
+terms as Perl itself. As far as I know, Perl is published under Artistic or GPL
+license, so I used the GNU General Public License for ntpdate. And the complete 
+license you can get at: http://www.gnu.org/copyleft/gpl.html
+
+
+5.0 Some NTP information
+------------------------
+
+This program will not work after the NTP timestamp rollover on 02/07/2036.
+
+Finally, RFC 2030 (ftp://ftp.rfc-editor.org/in-notes/rfc2030.txt) recommends
+the following on stratum usage: As the load on the hosts supporting NTP primary
+(stratum 1) time service is heavy and always increasing, clients should avoid
+using the primary servers whenever possible. In most cases the accuracy of the
+NTP secondary (stratum 2) servers is only slightly degraded relative to the
+primary servers and, as a group, the secondary servers may be just as reliable.
+
+
+6.0 Bugs and reporting
+----------------------
+
+Please report bugs and problems - written in German or English language - to
+me at: ntpdate@robert-scheck.de
+
+
+7.0 Thanksgiving
+----------------
+
+I want to use this part of the README file to say "thank you" to Ralf D. Kloth
+<ralf@qrq.de>, who wrote the base of this ntpdate program.
+
+
+8.0 Contact
+-----------
+
+Name     : Robert Scheck
+E-Mail   : ntpdate@robert-scheck.de
+GnuPG-Key: http://www.robert-scheck.de/kontakt/gpg/rsc.gpg
+IRC chat : irc.robert-scheck.de, #robert-scheck
